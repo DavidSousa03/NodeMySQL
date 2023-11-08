@@ -1,5 +1,5 @@
 {
-  "name": "nodemysql",
+  "name": "desenvolvimento_fullstack",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,7 +13,6 @@
   "dependencies": {
     "express": "^4.18.2",
     "express-handlebars": "^7.1.2",
-    "handlebars": "^4.7.8",
     "mysql": "^2.18.1",
     "nodemon": "^3.0.1"
   }
