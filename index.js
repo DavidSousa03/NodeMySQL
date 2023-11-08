@@ -17,19 +17,32 @@ app.use(express.json());
 
 
 app.get("/", (req, res) => {
-    res.render("home");
+  const sql = "SELECT * FROM books "
+
+  connection.query(sql, (error, data)=>{
+    if (error) {
+      return console.log(error)
+    }
+
+    const books = data
+
+    
+
+    res.render("home", { books });
+  })
+    
 })
 
 app.post("/register/save", (req, res) => {
-  const { title, pageqty } = req.body
+  const { name, pageqty } = req.body
 
 
   const query = `
-      INSERT INTO books (title, pageqty)
-      VALUES ('${title}', '${pageqty}')
+      INSERT INTO books (name, pageqty)
+      VALUES ('${name}', '${pageqty}')
   `
 
-  conn.query(query, (error) =>{
+  connection.query(query, (error) =>{
       if (error) {
           console.log(error)
           return
