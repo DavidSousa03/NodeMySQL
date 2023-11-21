@@ -1,3 +1,4 @@
+const { error } = require("console");
 const express = require("express");
 const exphbs = require("express-handlebars");
 const mysql = require("mysql");
@@ -49,6 +50,23 @@ app.post("/register/save", (req, res) => {
       }
 
       res.redirect("/")
+  })
+})
+app.get("/book/id", (req, res)=>{
+  const id = res.params.id
+
+  const sql = `
+    SELECT * FROM books
+    WHERE id=${id}
+  `
+  connection.query(sql,(error, data)=>{
+    if (error) {
+      return console.log (error)
+    }
+
+    const book = [0]
+    
+    res.render("book", {book })
   })
 })
 
