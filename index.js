@@ -27,12 +27,25 @@ app.get("/", (req, res) => {
 
     const books = data
 
-    
-
     res.render("home", { books });
   })
     
 })
+  app.post("/delete", (req, res) => {
+    const id = res.body
+
+    const sql= `
+      DELETE FROM books 
+      WHERE id = ${id}
+    `
+    connection.query(query, (error) =>{
+      if (error) {
+          return  console.log(error)
+      }
+      res.redirect("/")
+    })  
+
+}
 
 app.post("/register/save", (req, res) => {
   const { name, pageqty } = req.body
@@ -45,8 +58,7 @@ app.post("/register/save", (req, res) => {
 
   connection.query(query, (error) =>{
       if (error) {
-          console.log(error)
-          return
+          return console.log(error)
       }
 
       res.redirect("/")
@@ -61,12 +73,13 @@ app.post("/edit/save", (req, res)=>{
     WHERE id = ${id}
   
   `
+})
   connection.query(sql,(error, data)=>{
     if (error) {
       return console.log (error)
     }
 
-    res.redirect("/home")
+    res.redirect("/")
 })
 
 app.get("edit/id", (req, res )=> {
@@ -84,6 +97,7 @@ app.get("edit/id", (req, res )=> {
     const book = [0]
 
     res.render('edit', (book) )
+  })  
 })
 
 app.get("/book/id", (req, res)=>{
