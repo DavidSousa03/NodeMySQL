@@ -16,6 +16,11 @@ ul, li{
 
 header {
     margin-bottom: 2rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom:1rem ;
+}
+header h1{
+    margin-bottom: 1rem;
 }
 
 header ul {
@@ -23,6 +28,9 @@ header ul {
     gap: 3rem;
 }
 
+main > h2{
+    margin-bottom: 1rem ;
+}
 .book{
     border: 1px solid #ccc;
     width: 30rem;
@@ -32,4 +40,34 @@ header ul {
 
 .book + .book {
     margin-top: 1rem;
+}
+.buttons{
+    margin-top: 0.5rem ;
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem ;
+}
+.buttons a {
+  display: block;  
+  text-decoration: none;
+}
+.buttons .mais{
+    border: 1px solid #007bff ;
+    background: #007bff;
+    color: white;
+    
+}
+.buttons .mais:hover{
+    background: white;
+    color: #007bff;
+}
+.buttons .editar {
+    border: 1px solid #ffc107 ;
+    background: #ffc107;
+    color: black;
+}
+.buttons .editar:hover{
+    background: white;
+    color: ffc107;
 }

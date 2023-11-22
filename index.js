@@ -52,6 +52,40 @@ app.post("/register/save", (req, res) => {
       res.redirect("/")
   })
 })
+
+app.post("/edit/save", (req, res)=>{
+  const {id, title, pageqty} = res.body
+  const sql = `
+    UPDATE books
+    SET title = '${title}', pageqty = '${pageqty}' 
+    WHERE id = ${id}
+  
+  `
+  connection.query(sql,(error, data)=>{
+    if (error) {
+      return console.log (error)
+    }
+
+    res.redirect("/home")
+})
+
+app.get("edit/id", (req, res )=> {
+  const id = res.params.id
+
+  const sql = `
+    SELECT * FROM books
+    WHERE id = ${id}
+  `
+  connection.query(sql,(error, data)=>{
+    if (error) {
+      return console.log (error)
+    }
+
+    const book = [0]
+
+    res.render('edit', (book) )
+})
+
 app.get("/book/id", (req, res)=>{
   const id = res.params.id
 
